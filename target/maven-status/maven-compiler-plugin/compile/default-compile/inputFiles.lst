@@ -1,11 +1,11 @@
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\config\AppConfig.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\config\WebInitConfig.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\Branch.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\Product.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\config\WebMvcConfig.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\Bill.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\config\HibernateConfig.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\Employee.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\SoldProduct.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\model\Client.java
-D:\New folder\Documents\spring-mvc\SpringMVCDemo\src\main\java\demo\config\ViewConfig.java
+D:\PTHTPT\src\main\java\demo\config\WebMvcConfig.java
+D:\PTHTPT\src\main\java\demo\model\Product.java
+D:\PTHTPT\src\main\java\demo\config\ViewConfig.java
+D:\PTHTPT\src\main\java\demo\model\Client.java
+D:\PTHTPT\src\main\java\demo\config\HibernateConfig.java
+D:\PTHTPT\src\main\java\demo\model\Bill.java
+D:\PTHTPT\src\main\java\demo\model\Branch.java
+D:\PTHTPT\src\main\java\demo\model\SoldProduct.java
+D:\PTHTPT\src\main\java\demo\config\AppConfig.java
+D:\PTHTPT\src\main\java\demo\config\WebInitConfig.java
+D:\PTHTPT\src\main\java\demo\model\Employee.java
