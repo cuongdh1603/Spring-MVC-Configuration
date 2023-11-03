@@ -5,6 +5,7 @@ import demo.model.Branch;
 import demo.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,11 +17,12 @@ public class BillController {
     private BillService service;
 
     @RequestMapping(value = {"/bill"}, method = RequestMethod.GET)
-    public String getIndex(){
+    public String getIndex(ModelMap model){
         List<Bill> bills = service.getAll();
         for (Bill branch : bills) {
             System.out.println(branch.getClient().getName());
         }
+        model.addAttribute("bills", bills);
         return "bill";
     }
 }

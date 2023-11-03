@@ -34,24 +34,19 @@
     <div class="row menu" style="padding: 10px; color: white;background-color: darkblue">
         Menu
     </div>
-    <c:forEach items="${branchs}" var="pr" varStatus="counter">
-    	<div style="color: red"> 
-    		<c:out value="count : ${counter.count}"></c:out> 
-    	</div>
-    	<div>
-    		<c:out value="${pr.id}"></c:out>
-    	</div>
-    	<div>
-    		<c:out value="${pr.name}"></c:out>
-    	</div>
-    	<div>
-    		<c:out value="${pr.dob}"></c:out>
-    	</div>
-    	<div>
-    		<c:out value="${pr.branch.address}"></c:out>
-    	</div>
-    	<br/>
-    </c:forEach>
+    <h2>Danh sách chi nhánh</h2>
+    <table>
+        <tr>
+            <td>Mã Chi nhánh</td><td>Tên Chi nhánh</td><td>Địa chỉ</td>
+        </tr>
+        <c:forEach items="${branchs}" var="brand">
+            <tr>
+                <td>${brand.id}</td>
+                <td>${brand.name}</td>
+                <td>${brand.address}</td>
+            </tr>
+        </c:forEach>
+    </table>
     <div class="row footer" style="text-align: center;background-color: #000033;color: white">
         <div class="col-md-12">
             Trung tâm code fresher <br>
