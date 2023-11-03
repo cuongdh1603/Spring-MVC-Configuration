@@ -1,5 +1,7 @@
 package demo.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@Data
 @Table(name = "BILL")
 public class Bill {
 	

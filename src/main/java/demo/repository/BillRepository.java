@@ -1,6 +1,11 @@
 package demo.repository;
 
 
-public interface BillRepository{
-	
+import demo.model.Bill;
+
+import java.util.List;
+
+public interface BillRepository {
+
+    public List<Bill> getAllBill();
 }

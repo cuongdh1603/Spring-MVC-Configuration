@@ -22,7 +22,7 @@ public class BranchController {
     @Autowired
     private BranchService branchService;
     
-    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String getIndex(){
         List<Branch> branchs = branchService.getAllBranches();
         for (Branch branch : branchs) {
