@@ -2,8 +2,11 @@ package demo.repository;
 
 import demo.model.Bill;
 import demo.model.Branch;
+import demo.model.Client;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +25,5 @@ public class BillRepositoryImpl implements BillRepository {
     public List<Bill> getAllBill() {
         Criteria criteria = (Criteria) getSessionFactory().getCurrentSession().createCriteria(Bill.class);
         return criteria.list();
-
     }
 }

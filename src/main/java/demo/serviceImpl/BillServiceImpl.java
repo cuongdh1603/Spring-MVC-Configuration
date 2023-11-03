@@ -17,6 +17,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public List<Bill> getAll() {
+
         return repo.getAllBill();
     }
 }
