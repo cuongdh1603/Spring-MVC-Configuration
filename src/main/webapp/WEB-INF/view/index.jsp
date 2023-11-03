@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,102 +34,24 @@
     <div class="row menu" style="padding: 10px; color: white;background-color: darkblue">
         Menu
     </div>
-    <div class="row content">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-10">
-                    <h2>Danh sách sinh viên</h2>
-                </div>
-                <div>
-                    <a href="/create-new1/10/test-name" style="text-decoration: none">Thêm mới 1</a><br>
-                    <a href="/create-new2?id=10&name=test" style="text-decoration: none">Thêm mới 2</a>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Mã sinh viên</th>
-                    <th>Họ tên</th>
-                    <th>Khoa/Viện</th>
-                    <th>Lớp</th>
-                    <th>Điểm GPA</th>
-                    <th>Thao tác</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>20211234</td>
-                    <td>Nguyễn Văn B</td>
-                    <td>Công nghệ thông tin</td>
-                    <td>CNTT201</td>
-                    <td>3.4</td>
-                    <td>
-                        <button class="btn btn-info">Chi tiết</button>
-                        <button class="btn btn-primary">Sửa</button>
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>20212345</td>
-                    <td>Nguyễn Văn C</td>
-                    <td>Công nghệ thông tin</td>
-                    <td>CNTT201</td>
-                    <td>5.7</td>
-                    <td>
-                        <button class="btn btn-info">Chi tiết</button>
-                        <button class="btn btn-primary">Sửa</button>
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>20213456</td>
-                    <td>Nguyễn Văn E</td>
-                    <td>Điện tử viễn thông</td>
-                    <td>CNTT201</td>
-                    <td>7.9</td>
-                    <td>
-                        <button class="btn btn-info">Chi tiết</button>
-                        <button class="btn btn-primary">Sửa</button>
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>20212007</td>
-                    <td>Nguyễn Văn F</td>
-                    <td>An toàn thông tin</td>
-                    <td>CNTT201</td>
-                    <td>3.46</td>
-                    <td>
-                        <button class="btn btn-info">Chi tiết</button>
-                        <button class="btn btn-primary">Sửa</button>
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <form action="add">
-		    	<input type="text" name = "t1"><br>
-		    	<input type="text" name = "t2"><br>
-		    	<input type = "submit">
-		    	<p>Result is: ${result}</p>	
-				<a href="/customer-welcome" style="color: green;text-decoration: null">Go to customer page</a> 
-		    </form>
-		    <form action="name">
-			    <label>Nhập họ tên:</label>
-			    <input type = "text" name = "t3">
-			    <br>
-			    <button >Chuyển đổi tên</button>
-			    <p>Tên bạn là: ${name}</p>
-		    </form>
-		    
-        </div>
-    </div>
-    
+    <c:forEach items="${branchs}" var="pr" varStatus="counter">
+    	<div style="color: red"> 
+    		<c:out value="count : ${counter.count}"></c:out> 
+    	</div>
+    	<div>
+    		<c:out value="${pr.id}"></c:out>
+    	</div>
+    	<div>
+    		<c:out value="${pr.name}"></c:out>
+    	</div>
+    	<div>
+    		<c:out value="${pr.dob}"></c:out>
+    	</div>
+    	<div>
+    		<c:out value="${pr.branch.address}"></c:out>
+    	</div>
+    	<br/>
+    </c:forEach>
     <div class="row footer" style="text-align: center;background-color: #000033;color: white">
         <div class="col-md-12">
             Trung tâm code fresher <br>

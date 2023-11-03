@@ -11,8 +11,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-
-
 public class WebInitConfig implements WebApplicationInitializer{
 
 	public void onStartup(ServletContext servletContext) throws ServletException {
