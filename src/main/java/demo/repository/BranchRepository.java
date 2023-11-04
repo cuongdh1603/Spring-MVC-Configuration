@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author OS
  */
-@Repository
+@Repository 
 @Transactional
 public class BranchRepository {
     @Autowired
