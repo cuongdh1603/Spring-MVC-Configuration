@@ -28,7 +28,7 @@
         <c:forEach items="${clients}" var="client">
             <tr>
                 <td>${client.name}</td>
-                <td id="formattedDate">${client.dob}</td>
+                <td >${client.dob}</td>
                 <td>${client.phone}</td>
                 <td>${client.username}</td>
             </tr>
@@ -42,13 +42,6 @@
         </div>
     </div>
 </div>
-<script>
-    var currentDate = new Date(); // Get the current date
-    var day = String(currentDate.getDate()).padStart(2, '0');
-    var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-    var year = currentDate.getFullYear();
-    var formattedDate = day + '/' + month + '/' + year;
-    document.getElementById('formattedDate').textContent = formattedDate;
-</script>
+
 </body>
 </html>

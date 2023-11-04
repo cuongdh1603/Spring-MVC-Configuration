@@ -30,7 +30,7 @@
                 <td>${bill.quantity}</td>
                 <td>${bill.soldProduct.product.name}</td>
                 <td>${bill.client.name}</td>
-                <td id="formattedDate">${bill.createDate}</td>
+                <td >${bill.createDate}</td>
             </tr>
         </c:forEach>
     </table>
@@ -42,13 +42,5 @@
         </div>
     </div>
 </div>
-<script>
-    var currentDate = new Date(); // Get the current date
-    var day = String(currentDate.getDate()).padStart(2, '0');
-    var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-    var year = currentDate.getFullYear();
-    var formattedDate = day + '/' + month + '/' + year;
-    document.getElementById('formattedDate').textContent = formattedDate;
-</script>
 </body>
 </html>
