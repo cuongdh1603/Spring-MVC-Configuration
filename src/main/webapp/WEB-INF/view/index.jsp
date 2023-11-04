@@ -22,10 +22,6 @@
         <div class="col-md-1" style="margin-left: -15px">
             <img src="/resources/img/logo.PNG" style="width: 100%;height: 100%">
         </div>
-        <p>Now: ${date}</p>
-        <div class="col-md-8 vertical-center-item">
-            <h2 class="align-middle">HỆ THỐNG QUẢN LÝ SINH VIÊN</h2>
-        </div>
         <div class="col-md-3 text-end">
             <span>Xin chào: Nguyễn Văn A</span>
             <span>

@@ -19,9 +19,6 @@ public class BillController {
     @RequestMapping(value = {"/bill"}, method = RequestMethod.GET)
     public String getIndex(ModelMap model){
         List<Bill> bills = service.getAll();
-        for (Bill branch : bills) {
-            System.out.println(branch.getClient().getName());
-        }
         model.addAttribute("bills", bills);
         return "bill";
     }
