@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Trang quản trị</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/resources/css/index_style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/index_style.css" type="text/css">
 </head>
+<style>
+    table, th, td {
+        border: 1px solid;
+    }
+</style>
 <body style="background-color: #dddddd">
 <div class="container">
-	
+
     <div class="row" style="height: 5px;background-color: #ffffff"></div>
     <div class="row header">
         <div class="col-md-1" style="margin-left: -15px">
@@ -37,7 +42,9 @@
     <h2>Danh sách chi nhánh</h2>
     <table>
         <tr>
-            <td>Mã Chi nhánh</td><td>Tên Chi nhánh</td><td>Địa chỉ</td>
+            <td>Mã Chi nhánh</td>
+            <td>Tên Chi nhánh</td>
+            <td>Địa chỉ</td>
         </tr>
         <c:forEach items="${branchs}" var="brand">
             <tr>
@@ -55,5 +62,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

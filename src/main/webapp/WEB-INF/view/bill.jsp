@@ -2,10 +2,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Hóa đơn</title>
+    <title>Trang quản trị</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/index_style.css" type="text/css">
 </head>
+<style>
+    table, th, td {
+        border: 1px solid;
+    }
+</style>
 <body style="background-color: #dddddd">
 <div class="container">
     <div class="row menu" style="padding: 10px; color: white;background-color: darkblue">
@@ -14,14 +19,18 @@
     <h2>Danh sách đơn hàng</h2>
     <table>
         <tr>
-            <td>Số lượng</td><td>Tên sản phẩm</td><td>Tên người mua</td><td>Ngày mua</td><td></td>
+            <td>Số lượng</td>
+            <td>Tên sản phẩm</td>
+            <td>Tên người mua</td>
+            <td>Ngày mua</td>
+            <td></td>
         </tr>
         <c:forEach items="${bills}" var="bill">
             <tr>
                 <td>${bill.quantity}</td>
                 <td>${bill.soldProduct.product.name}</td>
                 <td>${bill.client.name}</td>
-                <td>${bill.createDate}</td>
+                <td id="formattedDate">${bill.createDate}</td>
             </tr>
         </c:forEach>
     </table>
@@ -33,5 +42,13 @@
         </div>
     </div>
 </div>
+<script>
+    var currentDate = new Date(); // Get the current date
+    var day = String(currentDate.getDate()).padStart(2, '0');
+    var month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    var year = currentDate.getFullYear();
+    var formattedDate = day + '/' + month + '/' + year;
+    document.getElementById('formattedDate').textContent = formattedDate;
+</script>
 </body>
 </html>
