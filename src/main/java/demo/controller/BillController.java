@@ -20,6 +20,6 @@ public class BillController {
     public String getIndex(ModelMap model){
         List<Bill> bills = service.getAll();
         model.addAttribute("bills", bills);
-        return "bill";
+        return "admin/bill";
     }
 }

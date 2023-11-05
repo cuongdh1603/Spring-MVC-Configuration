@@ -19,6 +19,6 @@ public class ClientController {
         List<Client> clients = serVice.getAllClient();
         System.out.println(clients);
         model.addAttribute("clients", clients);
-        return "client";
+        return "admin/client";
     }
 }

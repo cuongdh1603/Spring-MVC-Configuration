@@ -39,9 +39,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/client">
                             <i class="fas fa-user-tag mr-2"></i>
                             Khách hàng
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/bill">
+                            <i class="fas fa-calendar-times mr-2"></i>
+                           Hóa đơn
                         </a>
                     </li>
                     <li class="nav-item">

@@ -107,7 +107,7 @@
         <input type="submit" name="submit" value="Đăng nhập"/>
         <label class="psw-text">Quên mật khẩu</label>
     </form>
-    <a href="/SpringMVCDemo_war_exploded/signUp">
+    <a href="/signUp">
         Đăng ký
     </a>
 </div>
