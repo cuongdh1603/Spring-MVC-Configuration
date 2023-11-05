@@ -85,16 +85,16 @@
         </div>
         <%@include file="fragment/footer.jsp" %>
         <script>
-//            $(document).ready(function () {
-//                $('#example').DataTable({
-//                    columnDefs: [
-//                        {orderable: false, targets: 0},
-//                        {orderable: false, targets: 1},
-//                        {orderable: false, targets: 2},
-//                        {orderable: false, targets: 4}
-//                    ]
-//                })
-//            });
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    columnDefs: [
+                        {orderable: false, targets: 0},
+                        {orderable: false, targets: 1},
+                        {orderable: false, targets: 2},
+                        {orderable: false, targets: 4}
+                    ]
+                })
+            });
             var table = document.getElementById('tableDate');
             var rows = table.getElementsByTagName('tr');
 

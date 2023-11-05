@@ -12,13 +12,23 @@ import java.util.List;
 
 @Controller
 public class ClientController {
+
     @Autowired
     private ClientSerVice serVice;
+
     @RequestMapping(value = {"/client"}, method = RequestMethod.GET)
-    public String getIndex(ModelMap model)  {
+    public String getIndex(ModelMap model) {
         List<Client> clients = serVice.getAllClient();
         System.out.println(clients);
         model.addAttribute("clients", clients);
         return "admin/client";
+    }
+
+    @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
+    public String getUser(ModelMap model) {
+//        List<Client> clients = serVice.getAllClient();
+//        System.out.println(clients);
+//        model.addAttribute("clients", clients);
+        return "client/index";
     }
 }
