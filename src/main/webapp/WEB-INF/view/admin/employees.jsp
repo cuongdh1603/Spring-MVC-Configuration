@@ -81,7 +81,10 @@
                                         <c:out value="${em.name}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${em.dob}"/>
+                                        <%--<c:out value="${em.dob}"/>--%>
+                                        <p>
+                                            <fmt:formatDate pattern = "dd/MM/yyyy" value = "${em.dob}" />
+                                        </p>
                                     </td>
                                     <td>
                                         <c:out value="${em.phone}"/>

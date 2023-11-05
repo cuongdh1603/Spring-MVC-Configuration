@@ -13,7 +13,7 @@
             <div class="position-relative">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" aria-current="page">
+                        <a class="nav-link active" href="/admin" aria-current="page">
                             <i class="fas fa-home mr-2"></i>
                             Trang chủ
                         </a>
@@ -27,13 +27,13 @@
                     </li>
                     -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/admin/products">
                             <i class="fas fa-gifts mr-2"></i>
                             Sản phẩm
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/branch">
                             <i class="fas fa-sharp fa-light fa-cash-register mr-2"></i>
                             Nhân sự
                         </a>

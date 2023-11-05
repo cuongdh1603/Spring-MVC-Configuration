@@ -81,7 +81,7 @@
 
 
                                     <td>
-                                        <a type="button" class="btn btn-primary btn-sm" href="branch/${br.id}/emp">
+                                        <a type="button" class="btn btn-primary btn-sm" href="/branch/${br.id}/emp">
                                             <i class="fas fa-user-friends mx-2"></i>
                                             Danh sách nhân viên
                                         </a>

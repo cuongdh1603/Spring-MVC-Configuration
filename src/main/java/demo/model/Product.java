@@ -65,7 +65,7 @@ public class Product {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[ " + this.id + ", " + this.name + ", " + this.description + ", " + this.price + "]";
+		return "[ " + this.id + ", " + this.name + ", " + this.description + ", " + this.price + ", " + this.img + "]";
 	}
 	
 	

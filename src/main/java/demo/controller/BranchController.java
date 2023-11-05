@@ -30,7 +30,7 @@ public class BranchController {
     @Autowired
     private EmployeeService employeeService;
     
-    @RequestMapping(value = {"","/all"}, method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String showAllBranches(Model model) {
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("branches", branches);
