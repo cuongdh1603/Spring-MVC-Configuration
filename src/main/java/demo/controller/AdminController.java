@@ -5,9 +5,11 @@
 package demo.controller;
 
 import demo.model.Product;
+import demo.model.ProductMapper;
 import demo.service.BranchService;
 import demo.service.ProductService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,24 +52,24 @@ public class AdminController {
     
     @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
     public String addNewProduct(Model model) {
-        
+        ProductMapper product = new ProductMapper();
+        model.addAttribute("product", product);
         return "admin/add_product";
     }
     
     @RequestMapping(value = {"/save/product"}, method = RequestMethod.POST)
     public String saveProduct(Model model,
-            @RequestParam("name") String name,
-            @RequestParam("price") String price,
-            @RequestParam("description") String description,
-            @RequestParam("image") MultipartFile multipartFile
+            @ModelAttribute("product") ProductMapper product,
+            
+            HttpServletRequest request
     ){
-//        System.out.println("Thong tin san pham : " + product);
-        System.out.println("Ten : " + name);
-        System.out.println("Gia : " + price);
-        System.out.println("Mo ta : " + description);
+        System.out.println("Thong tin san pham : " + product.getName() + " " + product.getPrice() + " " + product.getImage().getOriginalFilename());
+//        System.out.println("Ten : " + name);
+//        System.out.println("Gia : " + price);
+//        System.out.println("Mo ta : " + description);
         
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        System.out.println("Ten file anh : " + fileName);
+//        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//        System.out.println("Ten file anh : " + fileName);
         return "admin/add_product";
     }
     
