@@ -40,4 +40,12 @@ public class ProductRepository {
         
     }
     
+    public void saveOrUpdate(Product product) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(product);
+    }
+    
+    public Product getById(String id) {
+        return getSessionFactory().getCurrentSession().get(Product.class, id);
+    }
+    
 }

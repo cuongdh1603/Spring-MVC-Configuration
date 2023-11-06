@@ -12,14 +12,25 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class ProductMapper {
 
-    private String name;
+    private String id;
 
+    private String name;
 
     private String description;
 
+    private String filePath;
+
     private Long price;
-    
+
     private MultipartFile image;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -45,8 +56,6 @@ public class ProductMapper {
         this.price = price;
     }
 
-    
-
     public MultipartFile getImage() {
         return image;
     }
@@ -55,4 +64,13 @@ public class ProductMapper {
         this.image = image;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    
 }

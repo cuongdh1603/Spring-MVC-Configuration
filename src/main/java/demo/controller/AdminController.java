@@ -6,20 +6,16 @@ package demo.controller;
 
 import demo.model.Product;
 import demo.model.ProductMapper;
-import demo.service.BranchService;
 import demo.service.ProductService;
+import java.io.IOException;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -43,7 +39,7 @@ public class AdminController {
         model.addAttribute("products", products);
         
         for (Product product : products) {
-            product.setImg("/resources/product_img/638175171985162982_asus-vivobook-e1404fa-nk186w-r5-7520u-den-dd-moi.webp");
+            
             System.out.println(product);
         }
         
@@ -60,19 +56,90 @@ public class AdminController {
     @RequestMapping(value = {"/save/product"}, method = RequestMethod.POST)
     public String saveProduct(Model model,
             @ModelAttribute("product") ProductMapper productMapper
-    ){
+    ) throws IOException{
         Product product = new Product();
         product.setName(productMapper.getName().trim());
         product.setPrice(productMapper.getPrice());
         product.setDescription(productMapper.getDescription().trim());
-        product.setImg(productMapper.getImage().getOriginalFilename());
+        product.setImg(productMapper.getImage().getOriginalFilename().trim());
         
+        if(product.getDescription().trim().equals("")
+                ||product.getName().trim().equals("")
+                ||product.getPrice().equals(null)){
+            model.addAttribute("blankError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+        }
+        if(product.getImg().equals("")){
+            model.addAttribute("imageError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+        }
         if(productService.checkIfProductNameExist(product)){
-            model.addAttribute("errorName", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("nameError", "Tên s?n ph?m ?ã b? trùng");
             model.addAttribute("product", productMapper);
             
         }
-        return "admin/add_product";
+        
+        String productId = productService.createNewProductID();
+        
+        if(productId.equals(null)) {
+            model.addAttribute("idCreateError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+        }
+        product.setId(productId);
+        productService.saveProduct(product, productMapper.getImage());
+        
+        System.out.println("Thong tin san pham : " + productId);
+        return "redirect:/admin/products";
+    }
+    
+    @RequestMapping(value = {"/update/product/{productId}"}, method = RequestMethod.GET)
+    public String showUpdateProductForm(Model model, @PathVariable("productId") String productId) {
+        Product product = productService.getProductById(productId);
+        ProductMapper productMapper = new ProductMapper();
+        productMapper.setId(product.getId());
+        productMapper.setName(product.getName());
+        productMapper.setPrice(product.getPrice());
+        productMapper.setDescription(product.getDescription());
+        productMapper.setFilePath(product.getImagePath());
+        
+        model.addAttribute("product", productMapper);
+        return "admin/update_product";
+    }
+    
+    @RequestMapping(value = {"/update/product"}, method = RequestMethod.POST)
+    public String updateProduct(Model model,
+            @ModelAttribute("product") ProductMapper productMapper)
+    {
+        String id = productMapper.getId();
+//        System.out.println("ID: " + id);
+        Product product = productService.getProductById(id);
+        product.setName(productMapper.getName());
+        product.setPrice(productMapper.getPrice());
+        product.setDescription(productMapper.getDescription().trim());
+        
+        productMapper.setFilePath(product.getImagePath());
+        if(product.getDescription().trim().equals("")
+                ||product.getName().trim().equals("")
+                ||product.getPrice().equals(null)){
+            model.addAttribute("blankError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+            return "admin/update_product";
+        }
+        if(product.getImg().trim().equals("")){
+            model.addAttribute("imageError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+            return "admin/update_product";
+        }
+        if(productService.checkIfUpdatedNameInvalid(product)){
+            model.addAttribute("nameError", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+            return "admin/update_product";
+        }
+        
+        if(!productMapper.getImage().getOriginalFilename().equals("") && !productMapper.getImage().getOriginalFilename().equals(product.getImg())){
+            product.setImg(productMapper.getImage().getOriginalFilename());
+        }
+        return "redirect:/admin/products";
     }
     
 }

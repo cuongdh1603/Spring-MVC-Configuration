@@ -8,8 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>Thêm mới sản phẩm</title>
-
+        <title>Chỉnh sửa sản phẩm</title>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <!-- Bootstrap core CSS -->
@@ -54,10 +53,10 @@
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Thông tin nhãn hàng mới</h1>
+                        <h1 class="h2">Cập nhật sản phẩm</h1>
                     </div>
 
-                    <form:form action="/admin/save/product" commandName="product" method="POST" enctype="multipart/form-data">
+                    <form:form action="/admin/update/product" commandName="product" method="POST" enctype="multipart/form-data">
                         <div class="form-group row mb-0">
                             <div class="row">
                                 <div class="col-8">
@@ -82,9 +81,17 @@
                                         </p>
                                     </c:if>
                                     <div class="row">
+                                        <label class="col-sm-3 col-form-label">Mã sản phẩm:</label>
+                                        <div class="col-sm-9 my-2">
+                                            <form:hidden path="id" />
+                                            <c:out value="${product.id}" />
+                                        </div>
+                                    </div>
+                                            
+                                    <div class="row">
                                         <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
                                         <div class="col-sm-9 my-2">
-                                            <form:input path="name" id="name" maxlength="45" />
+                                            <form:input path="name" id="name" width="100%" maxlength="45" required="required" />
 
                                         </div>
                                     </div>
@@ -92,7 +99,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Giá thành:</label>
                                         <div class="input-group col-sm-9 my-2">
-                                            <form:input type="number" path="price" id="price" min="100000" max="100000000" />
+                                            <form:input type="number" path="price" id="price" min="100000" max="100000000" required="required"  />
                                             <span class="input-group-text">VNĐ</span>
                                         </div>
                                     </div>
@@ -101,7 +108,7 @@
                                         <label class="col-sm-3 col-form-label">Mô tả sản phẩm:</label>
                                         <div class="input-group col-sm-9 my-2">
 
-                                            <form:textarea path="description" id="description" cols="40" rows="3" maxlength="250" />
+                                            <form:textarea path="description" id="description" cols="40" rows="3" maxlength="250" required="required"  />
 
                                         </div>
                                     </div>
@@ -109,7 +116,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="preview text-center mb-2">
-                                        <img class="img-thumbnail" id="file-ip-1-preview" width="200px" height="200px">
+                                        <img class="img-thumbnail" src="<c:url value="${product.getFilePath()}"/>" id="file-ip-1-preview" width="200px" height="200px">
                                     </div>
                                     <div class="col-9">
                                         <form:input path="image" class="form-control form-control-sm" id="file-ip-1" type="file"
@@ -122,8 +129,9 @@
                                 <div class="row">
                                     <div class="col-3"></div>
                                     <div class="col-6">
-                                        <input type="submit" class="btn btn-primary btn-col-3" value="Thêm sản phẩm">
-                                        <a class="btn btn-danger btn-col-3" th:href="@{/items}">Hủy</a>
+                                        <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật">
+                                        <button class="btn btn-success btn-col-3" onclick="window.location.reload()">Khôi phục</button>
+                                        <a class="btn btn-danger btn-col-3" href="/admin/products">Hủy</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,47 +143,6 @@
         </div>
         <%@include file="fragment/footer.jsp" %>
         <script type="text/javascript">
-            $("input[data-type='currency']").on({
-//            $("#price").on({
-                keyup: function () {
-                    formatCurrency($(this));
-                },
-                blur: function () {
-                    formatCurrency($(this), "blur");
-                }
-            });
-            function formatNumber(n) {
-                // format number 1000000 to 1,234,567
-                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            function formatCurrency(input, blur) {
-                var input_val = input.val();
-                if (input_val === "") {
-                    return;
-                }
-                var original_len = input_val.length;
-                var caret_pos = input.prop("selectionStart");
-                if (input_val.indexOf(".") >= 0) {
-                    var decimal_pos = input_val.indexOf(".");
-                    // split number by decimal point
-                    var left_side = input_val.substring(0, decimal_pos);
-                    var right_side = input_val.substring(decimal_pos);
-                    // add commas to left side of number
-                    left_side = formatNumber(left_side);
-                    // validate right side
-                    right_side = formatNumber(right_side);
-                    // On blur make sure 2 numbers after decimal
-                } else {
-                    input_val = formatNumber(input_val);
-                    input_val = input_val;
-                }
-                // send updated string to input
-                input.val(input_val);
-                // put caret back in the right position
-                var updated_len = input_val.length;
-                caret_pos = updated_len - original_len + caret_pos;
-                input[0].setSelectionRange(caret_pos, caret_pos);
-            }
             function showPreview(event) {
                 if (event.target.files.length > 0) {
                     var src = URL.createObjectURL(event.target.files[0]);

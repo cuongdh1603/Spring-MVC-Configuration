@@ -77,7 +77,7 @@
                                         <c:out value="${pr.name}"/>
                                     </td>
                                     <td>
-                                        <img src="<c:url value="${pr.img}"/>" width="100px" height="50px">
+                                        <img src="<c:url value="${pr.getImagePath()}"/>" width="100px" height="50px">
                                     </td>
 
                                     <td>
@@ -86,7 +86,7 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <a type="button" class="btn btn-primary btn-sm" href="#">
+                                        <a type="button" class="btn btn-primary btn-sm" href="/admin/update/product/${pr.id}">
                                             <i class="fas fa-info-circle mx-2"></i>
                                         </a>
                                         <a type="button" class="btn btn-success btn-sm" href="">
