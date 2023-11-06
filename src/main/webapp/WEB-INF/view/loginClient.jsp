@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Đăng nhâp</title>
@@ -100,12 +105,12 @@
     <body>
         <div class="form-tt" style="margin: 0 31%">
             <h2>Đăng nhập</h2>
-            <form action="#" method="post" name="dang-ky">
-                <input type="text" name="username" placeholder="Nhập tên đăng ký"/>
-                <input type="password" name="password" placeholder="Nhập mật khẩu"/>
+            <form:form action="/post-login" commandName="client" method="post" name="dang-ky">
+                <form:input type="text" path="username" name="username" placeholder="Nhập tên đăng ký"/>
+                <form:input type="password" path="password" name="password" placeholder="Nhập mật khẩu"/>
                 <input type="checkbox" id="checkbox" name="checkbox"><label class="checkbox-text">Nhớ đăng nhập lần sau</label>
                 <input type="submit" name="submit" value="Đăng nhập"/>       
-            </form>
+            </form:form>
             <a href="/signUp" style="color: #ffffff ; text-decoration: none">
                 Đăng ký
             </a>

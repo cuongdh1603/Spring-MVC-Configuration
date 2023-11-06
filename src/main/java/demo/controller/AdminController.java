@@ -108,7 +108,7 @@ public class AdminController {
     
     @RequestMapping(value = {"/update/product"}, method = RequestMethod.POST)
     public String updateProduct(Model model,
-            @ModelAttribute("product") ProductMapper productMapper)
+            @ModelAttribute("product") ProductMapper productMapper) throws IOException
     {
         String id = productMapper.getId();
 //        System.out.println("ID: " + id);
@@ -136,9 +136,8 @@ public class AdminController {
             return "admin/update_product";
         }
         
-        if(!productMapper.getImage().getOriginalFilename().equals("") && !productMapper.getImage().getOriginalFilename().equals(product.getImg())){
-            product.setImg(productMapper.getImage().getOriginalFilename());
-        }
+        
+        productService.updateProduct(product, productMapper.getImage());
         return "redirect:/admin/products";
     }
     

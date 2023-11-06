@@ -19,4 +19,13 @@ public class ClientServiceImpl implements ClientSerVice {
     public List<Client> getAllClient()  {
         return repo.getAllClient();
     }
+    
+    public Client checkClientExist(Client client){
+        List<Client> clients = getAllClient();
+        for (Client cl : clients) {
+            if(cl.getUsername().trim().equals(client.getUsername()) && cl.getPassword().trim().equals(client.getPassword()))
+                return cl;
+        }
+        return null;
+    }
 }
