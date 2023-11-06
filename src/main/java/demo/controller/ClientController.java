@@ -2,6 +2,7 @@ package demo.controller;
 
 import demo.model.Client;
 import demo.model.Product;
+import demo.model.ProductMapper;
 import demo.service.ClientSerVice;
 import demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ClientController {
@@ -35,5 +37,18 @@ public class ClientController {
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
         return "client/index";
+    }
+
+    @RequestMapping(value = {"/buy/{id}"}, method = RequestMethod.GET)
+    public String findByProduct(@PathVariable("id") String id, ModelMap model) {
+        Product product = productService.getProductById(id);
+        ProductMapper productMapper = new ProductMapper();
+        productMapper.setId(product.getId());
+        productMapper.setName(product.getName());
+        productMapper.setPrice(product.getPrice());
+        productMapper.setDescription(product.getDescription());
+        productMapper.setFilePath(product.getImagePath());
+        model.addAttribute("product", productMapper);
+        return "client/buy";
     }
 }

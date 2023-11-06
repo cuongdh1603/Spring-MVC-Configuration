@@ -200,7 +200,7 @@
                                         <h6 class="price_heading">
                                             ${product.price} <span>đ</span>
                                         </h6>
-                                        <a href="">
+                                        <a href="/buy/${product.id}">
                                             Buy Now
                                         </a>
                                     </div>
