@@ -13,7 +13,7 @@
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!-- Site Metas -->
-        <link rel="icon" href="/resources/img/fevicon.png" type="image/gif" />
+        <link rel="icon" href="/resources/img/logolap.png" type="image/gif" />
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -500,19 +500,6 @@
         <script src="/resources/js/custom.js"></script>
         <!-- Google Map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    columnDefs: [
-                        {orderable: false, targets: 0},
-                        {orderable: false, targets: 1},
-                        {orderable: false, targets: 2},
-                        {orderable: false, targets: 4}
-                    ]
-                })
-            });
-        </script>
     </body>
 
 </html>
