@@ -59,17 +59,19 @@ public class AdminController {
     
     @RequestMapping(value = {"/save/product"}, method = RequestMethod.POST)
     public String saveProduct(Model model,
-            @ModelAttribute("product") ProductMapper product,
-            
-            HttpServletRequest request
+            @ModelAttribute("product") ProductMapper productMapper
     ){
-        System.out.println("Thong tin san pham : " + product.getName() + " " + product.getPrice() + " " + product.getImage().getOriginalFilename());
-//        System.out.println("Ten : " + name);
-//        System.out.println("Gia : " + price);
-//        System.out.println("Mo ta : " + description);
+        Product product = new Product();
+        product.setName(productMapper.getName().trim());
+        product.setPrice(productMapper.getPrice());
+        product.setDescription(productMapper.getDescription().trim());
+        product.setImg(productMapper.getImage().getOriginalFilename());
         
-//        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//        System.out.println("Ten file anh : " + fileName);
+        if(productService.checkIfProductNameExist(product)){
+            model.addAttribute("errorName", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+            
+        }
         return "admin/add_product";
     }
     

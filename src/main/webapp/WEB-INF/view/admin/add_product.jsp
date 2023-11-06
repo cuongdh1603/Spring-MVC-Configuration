@@ -61,7 +61,11 @@
                         <div class="form-group row mb-0">
                             <div class="row">
                                 <div class="col-8">
-
+                                    <c:if test="${errorName != null}">
+                                        <p style="color: red">
+                                            <c:out value="${'Tên sản phẩm bị trùng'}" />
+                                        </p>
+                                    </c:if>
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
                                         <div class="col-sm-9 my-2">

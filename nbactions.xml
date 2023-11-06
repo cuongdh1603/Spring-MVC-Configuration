@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-LAPTOP</actionName>
+            <displayName>LAPTOP</displayName>
+            <goals>
+                <goal>tomcat7:run</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-LAPTOP2</actionName>
+            <displayName>LAPTOP2</displayName>
+            <goals>
+                <goal>tomcat7:run</goal>
+            </goals>
+        </action>
+    </actions>
