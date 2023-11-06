@@ -192,7 +192,7 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="<c:url value='${product.img}'/>">
+                                    <img src="<c:url value='${product.getImagePath()}'/>">
                                 </div>
                                 <div class="detail-box">
                                     <h5>${product.name}</h5>
