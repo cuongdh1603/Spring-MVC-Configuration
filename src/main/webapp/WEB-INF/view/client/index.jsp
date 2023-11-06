@@ -1,3 +1,8 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+         pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +42,7 @@
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <a class="navbar-brand" href="index.html">
                         <span>
-                           LapTopShop
+                            LapTopShop
                         </span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +51,10 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-                        
+
                         </div>
                         <div class="quote_btn-container">
-                            <a href="">
+                            <a href="/login">
                                 <span>
                                     Login
                                 </span>
@@ -183,131 +188,28 @@
                     </p>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f1.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    brown Chair Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 100.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
+                    <c:forEach var="product" items="${products}">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="<c:url value='${product.img}'/>">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>${product.name}</h5>
+                                    <div class="price_box">
+                                        <h6 class="price_heading">
+                                            ${product.price} <span>đ</span>
+                                        </h6>
+                                        <a href="">
+                                            Buy Now
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f2.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Double Bed Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 200.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f3.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    House Chair Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 200.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f4.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    brown Table Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 100.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f5.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Blue Chair Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 200.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/f6.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Brown Table Design
-                                </h5>
-                                <div class="price_box">
-                                    <h6 class="price_heading">
-                                        <span>$</span> 200.00
-                                    </h6>
-                                    <a href="">
-                                        Buy Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
-            </div>
         </section>
-
-  
 
         <section class="about_section layout_padding long_section">
             <div class="container">
@@ -336,75 +238,6 @@
             </div>
         </section>
 
-        <!-- end about section -->
-
-        <!-- blog section -->
-
-        <section class="blog_section layout_padding">
-            <div class="container">
-                <div class="heading_container">
-                    <h2>
-                        Latest Blog
-                    </h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/b1.jpg" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Look even slightly believable. If you are
-                                </h5>
-                                <p>
-                                    alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                                </p>
-                                <a href="">
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/b2.jpg" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Anything embarrassing hidden in the middle
-                                </h5>
-                                <p>
-                                    alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                                </p>
-                                <a href="">
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="/resources/img/b3.jpg" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Molestias magni natus dolores odio commodi. Quaerat!
-                                </h5>
-                                <p>
-                                    alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                                </p>
-                                <a href="">
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="client_section layout_padding-bottom">
             <div class="container">
                 <div class="heading_container">
@@ -667,7 +500,19 @@
         <script src="/resources/js/custom.js"></script>
         <!-- Google Map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-        <!-- End Google Map -->
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    columnDefs: [
+                        {orderable: false, targets: 0},
+                        {orderable: false, targets: 1},
+                        {orderable: false, targets: 2},
+                        {orderable: false, targets: 4}
+                    ]
+                })
+            });
+        </script>
     </body>
 
 </html>

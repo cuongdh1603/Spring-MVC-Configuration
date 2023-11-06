@@ -1,7 +1,9 @@
 package demo.controller;
 
 import demo.model.Client;
+import demo.model.Product;
 import demo.service.ClientSerVice;
+import demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import org.springframework.ui.Model;
 
 @Controller
 public class ClientController {
 
     @Autowired
     private ClientSerVice serVice;
+
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping(value = {"/client"}, method = RequestMethod.GET)
     public String getIndex(ModelMap model) {
@@ -26,9 +32,8 @@ public class ClientController {
 
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
     public String getUser(ModelMap model) {
-//        List<Client> clients = serVice.getAllClient();
-//        System.out.println(clients);
-//        model.addAttribute("clients", clients);
+        List<Product> products = productService.getAllProduct();
+        model.addAttribute("products", products);
         return "client/index";
     }
 }
