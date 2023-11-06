@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -55,16 +56,20 @@
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Thông tin nhãn hàng mới</h1>
                     </div>
-                    
-                    <form action="/admin/save/product" method="POST" enctype="multipart/form-data">
+
+                    <form:form action="/admin/save/product" commandName="product" method="POST" enctype="multipart/form-data">
                         <div class="form-group row mb-0">
                             <div class="row">
                                 <div class="col-8">
-                                    
+                                    <c:if test="${errorName != null}">
+                                        <p style="color: red">
+                                            <c:out value="${'Tên sản phẩm bị trùng'}" />
+                                        </p>
+                                    </c:if>
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
                                         <div class="col-sm-9 my-2">
-                                            <input name="name" id="name" maxlength="45"/>
+                                            <form:input path="name" id="name" maxlength="45" />
 
                                         </div>
                                     </div>
@@ -72,7 +77,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Giá thành:</label>
                                         <div class="input-group col-sm-9 my-2">
-                                            <input type="number" name="price" id="price" maxlength="8" />
+                                            <form:input type="number" path="price" id="price" maxlength="8" />
                                             <span class="input-group-text">VNĐ</span>
                                         </div>
                                     </div>
@@ -80,9 +85,9 @@
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Mô tả sản phẩm:</label>
                                         <div class="input-group col-sm-9 my-2">
-                                            
-                                            <textarea name="description" id="description" cols="40" rows="3" maxlength="250">
-                                            </textarea>
+
+                                            <form:textarea path="description" id="description" cols="40" rows="3" maxlength="250" />
+
                                         </div>
                                     </div>
 
@@ -92,12 +97,12 @@
                                         <img class="img-thumbnail" id="file-ip-1-preview" width="200px" height="200px">
                                     </div>
                                     <div class="col-9">
-                                        <input class="form-control form-control-sm" id="file-ip-1" type="file"
+                                        <form:input path="image" class="form-control form-control-sm" id="file-ip-1" type="file"
                                                accept="image/*" onchange="showPreview(event);"/>
-                                        
-                                    
+
+
+                                    </div>
                                 </div>
-                            </div>
 
                                 <div class="row">
                                     <div class="col-3"></div>
@@ -108,8 +113,8 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    
+                    </form:form>
+
                 </main>
             </div>
         </div>
@@ -160,7 +165,7 @@
                 if (event.target.files.length > 0) {
                     var src = URL.createObjectURL(event.target.files[0]);
                     var preview = document.getElementById("file-ip-1-preview");
-                    
+
                     preview.src = src;
                     preview.style.display = "block";
                 }

@@ -5,9 +5,11 @@
 package demo.controller;
 
 import demo.model.Product;
+import demo.model.ProductMapper;
 import demo.service.BranchService;
 import demo.service.ProductService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,24 +52,26 @@ public class AdminController {
     
     @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
     public String addNewProduct(Model model) {
-        
+        ProductMapper product = new ProductMapper();
+        model.addAttribute("product", product);
         return "admin/add_product";
     }
     
     @RequestMapping(value = {"/save/product"}, method = RequestMethod.POST)
     public String saveProduct(Model model,
-            @RequestParam("name") String name,
-            @RequestParam("price") String price,
-            @RequestParam("description") String description,
-            @RequestParam("image") MultipartFile multipartFile
+            @ModelAttribute("product") ProductMapper productMapper
     ){
-//        System.out.println("Thong tin san pham : " + product);
-        System.out.println("Ten : " + name);
-        System.out.println("Gia : " + price);
-        System.out.println("Mo ta : " + description);
+        Product product = new Product();
+        product.setName(productMapper.getName().trim());
+        product.setPrice(productMapper.getPrice());
+        product.setDescription(productMapper.getDescription().trim());
+        product.setImg(productMapper.getImage().getOriginalFilename());
         
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        System.out.println("Ten file anh : " + fileName);
+        if(productService.checkIfProductNameExist(product)){
+            model.addAttribute("errorName", "Tên s?n ph?m ?ã b? trùng");
+            model.addAttribute("product", productMapper);
+            
+        }
         return "admin/add_product";
     }
     

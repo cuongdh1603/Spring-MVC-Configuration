@@ -24,4 +24,13 @@ public class ProductService {
     public List<Product> getAllProduct() {
         return productRepository.getAll();
     }
+    
+    public boolean checkIfProductNameExist(Product product) {
+        List<Product> products = getAllProduct();
+        for (Product pr : products) {
+            if(pr.getName().trim().equalsIgnoreCase(product.getName()))
+                return true;
+        }
+        return false;
+    }
 }
