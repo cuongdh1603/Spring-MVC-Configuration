@@ -105,13 +105,18 @@
     <body>
         <div class="form-tt" style="margin: 0 31%">
             <h2>Đăng nhập</h2>
+            <c:if test="${registerSuccessMsg != null}">
+                <p style="color: green">
+                    <c:out value="${'Đăng ký tài khoản thành công'}" />
+                </p>
+            </c:if>
             <form:form action="/post-login" commandName="client" method="post" name="dang-ky">
                 <form:input type="text" path="username" name="username" placeholder="Nhập tên đăng ký"/>
                 <form:input type="password" path="password" name="password" placeholder="Nhập mật khẩu"/>
                 <input type="checkbox" id="checkbox" name="checkbox"><label class="checkbox-text">Nhớ đăng nhập lần sau</label>
                 <input type="submit" name="submit" value="Đăng nhập"/>       
             </form:form>
-            <a href="/signUp" style="color: #ffffff ; text-decoration: none">
+            <a href="/signup" style="color: #ffffff ; text-decoration: none">
                 Đăng ký
             </a>
         </div>

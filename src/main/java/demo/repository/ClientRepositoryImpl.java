@@ -30,4 +30,8 @@ public class ClientRepositoryImpl implements ClientRepository {
         return criteria.list();
 
     }
+    
+    public void saveClient(Client client) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(client);
+    }
 }

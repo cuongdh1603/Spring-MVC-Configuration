@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ClientRepository {
     public List<Client> getAllClient() ;
+    public void saveClient(Client client);
 }

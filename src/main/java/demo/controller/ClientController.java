@@ -2,8 +2,10 @@ package demo.controller;
 
 import demo.model.Client;
 import demo.model.Product;
+
 import demo.model.ProductMapper;
 import demo.service.ClientSerVice;
+
 import demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.PathVariable;
+
+import demo.service.ClientSerVice;
+
 
 @Controller
 public class ClientController {

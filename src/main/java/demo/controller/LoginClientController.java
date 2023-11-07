@@ -29,17 +29,54 @@ public class LoginClientController {
         System.out.println(client.getUsername() + " " + client.getPassword());
         Client loggedInClient = clientServiceImpl.checkClientExist(client);
         if(loggedInClient == null){
-            System.out.println("Dang nhap that bai");
+            
         }
         else{
-            System.out.println("Dang nhap thanh cong");
+            
         }
         return "redirect:/user";
     }
 
-    @RequestMapping(value = {"/signUp"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/signup"}, method = RequestMethod.GET)
     public String signUp(ModelMap model) {
-        
+        Client client = new Client();
+        model.addAttribute("client", client);
         return "signUp";
+    }
+    
+    @RequestMapping(value = {"/post-signup"}, method = RequestMethod.POST)
+    public String doSignUp(ModelMap model, @ModelAttribute("client") Client newClient) {
+        System.out.println(newClient.getDob());
+        newClient.setName(newClient.getName().trim());
+        newClient.setPassword(newClient.getPassword().trim());
+        newClient.setPhone(newClient.getPhone().trim());
+        newClient.setUsername(newClient.getUsername().trim());
+        
+        if(!newClient.getPhone().matches("[0-9]+")){
+            model.addAttribute("phoneFormatError", "___");
+            model.addAttribute("client", newClient);
+            return "signUp";
+        }
+        if(clientServiceImpl.checkIfUsernameExist(newClient)){
+            model.addAttribute("usernameError", "___");
+            model.addAttribute("client", newClient);
+            return "signUp";
+        }
+        if(clientServiceImpl.checkIfPhoneExist(newClient)){
+            model.addAttribute("phoneError", "___");
+            model.addAttribute("client", newClient);
+            return "signUp";
+        }
+        String clientId = clientServiceImpl.createNewProductID();
+        if(clientId.equals(null)) {
+            model.addAttribute("idCreateError", "___");
+            model.addAttribute("client", newClient);
+            return "signUp";
+        }
+        newClient.setId(clientId);
+        clientServiceImpl.saveClient(newClient);
+        model.addAttribute("registerSuccessMsg", "____");
+        model.addAttribute("client", new Client());
+        return "loginClient";
     }
 }
