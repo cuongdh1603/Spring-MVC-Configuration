@@ -74,7 +74,7 @@
                                         <c:out value="${bill.client.name}"/>
                                     </td>
                                     <td>
-                                         <c:out value="${bill.createDate}"/>
+                                         <fmt:formatDate pattern = "dd/MM/yyyy" value="${bill.createDate}"/>
                                     </td>
                                 </tr>
                             </c:forEach>

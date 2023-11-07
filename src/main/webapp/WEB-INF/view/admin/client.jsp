@@ -68,7 +68,7 @@
                                         <c:out value="${client.name}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${client.dob}"/>
+                                        <fmt:formatDate pattern = "dd/MM/yyyy" value="${client.dob}"/>
                                     </td>
                                     <td>
                                         <c:out value="${client.phone}"/>

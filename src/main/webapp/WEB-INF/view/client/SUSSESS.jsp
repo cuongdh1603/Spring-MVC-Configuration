@@ -54,7 +54,8 @@
                                                 Mã đơn hàng : ${bill.id}
                                             </p>
                                             <p >
-                                                Ngày Mua hàng:  ${bill.createDate}
+                                                Ngày Mua hàng:
+                                                 <fmt:formatDate pattern = "dd/MM/yyyy" value="${bill.createDate}"/>
                                             </p>
                                         </div>
                                     </div>
