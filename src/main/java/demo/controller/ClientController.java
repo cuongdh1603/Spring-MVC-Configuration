@@ -5,6 +5,7 @@ import demo.model.Client;
 import demo.model.Product;
 
 import demo.model.ProductMapper;
+import demo.model.SoldProduct;
 import demo.service.BillService;
 import demo.service.ClientSerVice;
 
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import demo.service.ClientSerVice;
+import demo.service.SoldProductSerVice;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +38,10 @@ public class ClientController {
 
     @Autowired
     private BillService bilServce;
-
+    
+    @Autowired 
+    private SoldProductSerVice service;
+    
     @RequestMapping(value = {"/client"}, method = RequestMethod.GET)
     public String getIndex(ModelMap model) {
         List<Client> clients = serVice.getAllClient();
@@ -50,8 +55,8 @@ public class ClientController {
         Client loggedClient = (Client) session.getAttribute("loggedClient");
         model.addAttribute("username", loggedClient.getUsername());
 
-        List<Product> products = productService.getAllProduct();
-        model.addAttribute("products", products);
+        List<SoldProduct> soldproducts = service.getAllSoldProduct();
+        model.addAttribute("soldproducts", soldproducts);
         return "client/index";
     }
 

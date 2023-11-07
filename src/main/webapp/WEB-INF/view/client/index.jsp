@@ -204,19 +204,19 @@
                     </p>
                 </div>
                 <div class="row">
-                    <c:forEach var="product" items="${products}">
+                    <c:forEach var="soldproducts" items="${soldproducts}">
                         <div class="col-md-6 col-lg-4">
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="<c:url value='${product.getImagePath()}'/>">
+                                    <img src="<c:url value='${soldproducts.product.getImagePath()}'/>">
                                 </div>
                                 <div class="detail-box">
-                                    <h5>${product.name}</h5>
+                                    <h5>${soldproducts.product.name}</h5>
                                     <div class="price_box">
                                         <h6 class="price_heading">
-                                            ${product.price} <span>đ</span>
+                                            ${soldproducts.product.price} <span>đ</span>
                                         </h6>
-                                        <a href="/buy/${product.id}">
+                                        <a href="/buy/${soldproducts.product.id}">
                                             Buy Now
                                         </a>
                                     </div>
