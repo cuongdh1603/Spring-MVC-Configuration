@@ -54,12 +54,28 @@
 
                         </div>
                         <div class="quote_btn-container">
-                            <a href="/login">
+                             <c:if test="${client.name == null}">
+                                <a id="loginLink" href="/login">
                                 <span>
                                     Login
                                 </span>
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
+                           </c:if>  
+                      
+   <c:if test="${client.name != null}">
+                            <a>
+                                Xin chào :
+                                <span>
+                                    ${client.name}
+                                </span> 
+                            </a>
+                            <a href="/login">
+                                <span>
+                                    Đăng xuất
+                                </span>
+                            </a>
+   </c:if>
                             <form class="form-inline">
                                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>

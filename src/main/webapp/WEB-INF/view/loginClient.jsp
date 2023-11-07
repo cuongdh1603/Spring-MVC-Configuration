@@ -109,7 +109,7 @@
                 <p style="color: green">
                     <c:out value="${'Đăng ký tài khoản thành công'}" />
                 </p>
-            </c:if>
+            </c:if>  
             <form:form action="/post-login" commandName="client" method="post" name="dang-ky">
                 <form:input type="text" path="username" name="username" placeholder="Nhập tên đăng ký"/>
                 <form:input type="password" path="password" name="password" placeholder="Nhập mật khẩu"/>
