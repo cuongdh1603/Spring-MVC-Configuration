@@ -2,6 +2,7 @@ package demo.controller;
 
 import demo.model.Client;
 import demo.serviceImpl.ClientServiceImpl;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +27,19 @@ public class LoginClientController {
     }
 
     @RequestMapping(value = "/post-login", method = RequestMethod.POST)
-    public String doLogin(@ModelAttribute("client") Client client, Model model,RedirectAttributes redirectAttributes) {
+    public String doLogin(@ModelAttribute("client") Client client, 
+            Model model,
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
         Client loggedInClient = clientServiceImpl.checkClientExist(client);
         if (loggedInClient == null) {
             model.addAttribute("error", "Invalid username or password");
             return "loginClient";
         }
-       redirectAttributes.addFlashAttribute("client", loggedInClient);
+        else{
+            session.setAttribute("loggedClient", loggedInClient);
+        }
+        redirectAttributes.addFlashAttribute("client", loggedInClient);
         return "redirect:/user";
     }
 

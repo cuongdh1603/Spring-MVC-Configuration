@@ -126,7 +126,7 @@
                 <form:input type="text" path="username" name="username" placeholder="Nhập tên đăng ký" minlength="2" maxlength="10" required="required"/>
                 <form:input type="password" path="password" name="password" placeholder="Nhập mật khẩu" minlength="5" maxlength="10" required="required"/>
                 <form:input type="text" path="name" name="hoten" placeholder="Họ tên" required="required" maxlength="20"/>
-                <form:input type="text" id="datepicker" path="dob" name="birthday" placeholder="Ngày sinh" required="required"/>
+                <form:input id="datepicker" path="dob" name="birthday" placeholder="Ngày sinh" required="required"/>
                 <form:input type="text" path="phone" name="phone" placeholder="Số điện thoại" required="required" minlength="9" maxlength="15"/>
                 <input type="submit" value="Đăng Ký"/>
             </form:form>

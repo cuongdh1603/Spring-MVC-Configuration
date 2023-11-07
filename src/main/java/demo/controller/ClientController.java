@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import demo.service.ClientSerVice;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -39,7 +40,10 @@ public class ClientController {
     }
 
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
-    public String getUser(ModelMap model) {
+    public String getUser(ModelMap model, HttpSession session) {
+        Client loggedClient = (Client) session.getAttribute("loggedClient");
+        model.addAttribute("username", loggedClient.getUsername());
+        
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
         return "client/index";

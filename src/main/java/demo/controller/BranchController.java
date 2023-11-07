@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +42,27 @@ public class BranchController {
     public String showEmployeeEachBranch(Model model, @PathVariable("branchId") String branchId) {
         System.out.println(branchId);
         List<Employee> employees = employeeService.getEmployeeByBranch(branchId);
+        model.addAttribute("branchId", branchId);
         model.addAttribute("employees", employees);
         return "admin/employees";
+    }
+    
+    @RequestMapping(value = {"/{branchId}/emp/add"}, method = RequestMethod.GET)
+    public String showAddEmployeeForm(Model model, @PathVariable("branchId") String branchId){
+        Employee employee = new Employee();
+        model.addAttribute("branchId", branchId);
+        model.addAttribute("employee", employee);
+        return "admin/add_employee";
+    }
+    
+    @RequestMapping(value = {"/{branchId}/emp/save"}, method = RequestMethod.POST)
+    public String getEmployeeForm(Model model, 
+            @PathVariable("branchId") String branchId, 
+            @ModelAttribute("employee") Employee employee) 
+    {
+        System.out.println("Chi nhanh : " + branchId);
+        System.out.println("Thong tin NV : " + employee);
+        
+        return "redirect:/branch";
     }
 }
