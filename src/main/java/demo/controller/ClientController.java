@@ -84,6 +84,7 @@ public class ClientController {
             bill.setCreateDate(new Date());
             bill.setStatus(1);
             bilServce.Thanhtoan(bill);
+            model.addAttribute("bill", bill);
             return "client/SUSSESS";
         }
 
