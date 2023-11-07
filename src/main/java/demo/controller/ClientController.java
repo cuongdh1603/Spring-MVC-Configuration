@@ -93,7 +93,7 @@ public class ClientController {
         List<Bill> bills = bilServce.getAll();
         Integer numId = 1;
         for (Bill bill : bills) {
-            if (numId == Integer.parseInt(bill.getId().substring(4))){
+            if (numId == Integer.parseInt(bill.getId().trim().substring(4))){
                 numId++;
             } else {
                 break;

@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="preview text-center mb-2">
-                                            <img class="img-thumbnail" src="<c:url value="${product.getFilePath()}"/>" id="file-ip-1-preview" width="400px" height="400px">
+                                            <img class="img-thumbnail" src="<c:url value="${soldProduct.product.getImagePath()}"/>" id="file-ip-1-preview" width="400px" height="400px">
                                         </div>
                                     </div>
                                 </div>
