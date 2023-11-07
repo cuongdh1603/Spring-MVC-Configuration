@@ -35,6 +35,15 @@ public class EmployeeService {
         return branchEmployees;
     }
     
+    public Employee checkIfEmployeeExist(Employee employee) {
+        List<Employee> employees = employeeRepository.getAll();
+        for (Employee emp : employees) {
+            if(emp.getUsername().trim().equals(employee.getUsername().trim()) && emp.getPassword().trim().equals(employee.getPassword().trim()))
+                return emp;
+        }
+        return null;
+    }
+    
     public boolean checkIfUsernameExist(Employee employee) {
         List<Employee> employees = employeeRepository.getAll();
         for (Employee emp : employees) {

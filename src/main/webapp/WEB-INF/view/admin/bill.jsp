@@ -49,7 +49,7 @@
                 </div>
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Danh sách sản phẩm</h1>
+                        <h1 class="h2">Danh sách hóa đơn</h1>
                     </div>
                     <!--DEMO BANG DATA TABLE-->
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -88,10 +88,10 @@
             $(document).ready(function () {
                 $('#example').DataTable({
                     columnDefs: [
-                        {orderable: false, targets: 0},
-                        {orderable: false, targets: 1},
-                        {orderable: false, targets: 2},
-                        {orderable: false, targets: 4}
+//                        {orderable: false, targets: 0},
+//                        {orderable: false, targets: 1},
+//                        {orderable: false, targets: 2},
+//                        {orderable: false, targets: 3}
                     ]
                 })
             });
