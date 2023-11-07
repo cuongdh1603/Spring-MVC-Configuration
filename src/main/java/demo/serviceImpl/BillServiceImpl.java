@@ -20,4 +20,8 @@ public class BillServiceImpl implements BillService {
 
         return repo.getAllBill();
     }
+
+    public void Thanhtoan(Bill bill) {
+        repo.saveOrUpdate(bill);
+    }
 }

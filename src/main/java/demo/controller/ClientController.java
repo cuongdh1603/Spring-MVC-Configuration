@@ -1,9 +1,11 @@
 package demo.controller;
 
+import demo.model.Bill;
 import demo.model.Client;
 import demo.model.Product;
 
 import demo.model.ProductMapper;
+import demo.service.BillService;
 import demo.service.ClientSerVice;
 
 import demo.service.ProductService;
@@ -19,8 +21,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import demo.service.ClientSerVice;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class ClientController {
@@ -30,6 +33,9 @@ public class ClientController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BillService bilServce;
 
     @RequestMapping(value = {"/client"}, method = RequestMethod.GET)
     public String getIndex(ModelMap model) {
@@ -43,7 +49,7 @@ public class ClientController {
     public String getUser(ModelMap model, HttpSession session) {
         Client loggedClient = (Client) session.getAttribute("loggedClient");
         model.addAttribute("username", loggedClient.getUsername());
-        
+
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
         return "client/index";
@@ -61,4 +67,21 @@ public class ClientController {
         model.addAttribute("product", productMapper);
         return "client/buy";
     }
+
+    @RequestMapping(value = {"/thanhToan"}, method = RequestMethod.POST)
+    public String saveProduct(Model model, @ModelAttribute("bill") Bill bill, HttpSession session) {
+        Client client = new Client();
+        session.setAttribute("client", client);
+        if (client.getUsername() == null) {
+            return "loginClient";
+        } else {
+            bill.setClient(client);
+            bill.setCreateDate(new Date());
+            bill.setStatus(1);
+            bilServce.Thanhtoan(bill);
+            return "SUSSESS";
+        }
+
+    }
+
 }

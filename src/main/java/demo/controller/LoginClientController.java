@@ -26,8 +26,15 @@ public class LoginClientController {
         return "loginClient";
     }
 
+   @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+  public String logout(HttpSession session) {
+    session.invalidate(); // Xóa toàn b? phiên làm vi?c c?a ng??i dùng
+    return "redirect:/login"; // Chuy?n h??ng ??n trang ??ng nh?p sau khi ??ng xu?t
+}
+    
+    
     @RequestMapping(value = "/post-login", method = RequestMethod.POST)
-    public String doLogin(@ModelAttribute("client") Client client, 
+    public String doLogin(@ModelAttribute("client") Client client,
             Model model,
             RedirectAttributes redirectAttributes,
             HttpSession session) {
@@ -35,9 +42,8 @@ public class LoginClientController {
         if (loggedInClient == null) {
             model.addAttribute("error", "Invalid username or password");
             return "loginClient";
-        }
-        else{
-            session.setAttribute("loggedClient", loggedInClient);
+        } else {
+            session.setAttribute("client", loggedInClient);
         }
         redirectAttributes.addFlashAttribute("client", loggedInClient);
         return "redirect:/user";

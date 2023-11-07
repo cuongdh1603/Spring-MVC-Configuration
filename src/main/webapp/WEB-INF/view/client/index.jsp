@@ -70,7 +70,7 @@
                                     ${username}
                                 </span> 
                             </a>
-                            <a href="/login">
+                            <a href="/logout">
                                 <span>
                                     Đăng xuất
                                 </span>

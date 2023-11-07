@@ -136,7 +136,6 @@ public class AdminController {
             return "admin/update_product";
         }
         
-        
         productService.updateProduct(product, productMapper.getImage());
         return "redirect:/admin/products";
     }

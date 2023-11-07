@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public class BillRepositoryImpl implements BillRepository {
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -22,4 +23,9 @@ public class BillRepositoryImpl implements BillRepository {
         Criteria criteria = (Criteria) getSessionFactory().getCurrentSession().createCriteria(Bill.class);
         return criteria.list();
     }
+
+    public void saveOrUpdate(Bill bill) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(bill);
+    }
+
 }
