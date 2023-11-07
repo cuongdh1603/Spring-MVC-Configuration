@@ -43,7 +43,7 @@ public class LoginClientController {
             model.addAttribute("error", "Invalid username or password");
             return "loginClient";
         } else {
-            session.setAttribute("client", loggedInClient);
+            session.setAttribute("loggedClient", loggedInClient);
         }
         redirectAttributes.addFlashAttribute("client", loggedInClient);
         return "redirect:/user";

@@ -54,7 +54,7 @@
 
                         </div>
                         <div class="quote_btn-container">
-                             <c:if test="${username == null}">
+                             <c:if test="${loggedClient.username == null}">
                                 <a id="loginLink" href="/login">
                                 <span>
                                     Login
@@ -63,7 +63,7 @@
                             </a>
                            </c:if>  
                       
-   <c:if test="${username != null}">
+   <c:if test="${loggedClient.username != null}">
                             <a>
                                 Xin chào :
                                 <span>

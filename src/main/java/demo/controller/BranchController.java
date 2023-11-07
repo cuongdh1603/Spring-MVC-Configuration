@@ -62,7 +62,27 @@ public class BranchController {
     {
         System.out.println("Chi nhanh : " + branchId);
         System.out.println("Thong tin NV : " + employee);
-        
-        return "redirect:/branch";
+        if(employeeService.checkIfUsernameExist(employee)){
+            model.addAttribute("usernameError", "___");
+            model.addAttribute("branchId", branchId);
+            model.addAttribute("employee", employee);
+            return "admin/add_employee";
+        }
+        if(employeeService.checkIfPhoneExist(employee)){
+            model.addAttribute("phoneError", "___");
+            model.addAttribute("branchId", branchId);
+            model.addAttribute("employee", employee);
+            return "admin/add_employee";
+        }
+//        System.out.println(employeeService.createNewEmployeeID(branchId.trim()));
+        employee.setId(employeeService.createNewEmployeeID(branchId.trim()));
+        Branch branch = branchService.getBranchById(branchId.trim());
+        if(branch != null) {
+            employee.setBranch(branch);
+//            System.out.println("Last : " + employee);
+            employeeService.saveEmployee(employee);
+        }
+        return "redirect:/branch/" + branchId + "/emp";
     }
+    
 }

@@ -38,4 +38,8 @@ public class EmployeeRepository {
         TypedQuery<Employee> allQuery = getSessionFactory().getCurrentSession().createQuery(all);
         return allQuery.getResultList();
     }
+    
+    public void saveOrUpdate(Employee employee) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(employee);
+    }
 }

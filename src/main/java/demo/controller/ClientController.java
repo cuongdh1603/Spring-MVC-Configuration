@@ -70,8 +70,9 @@ public class ClientController {
 
     @RequestMapping(value = {"/thanhToan"}, method = RequestMethod.POST)
     public String saveProduct(Model model, @ModelAttribute("bill") Bill bill, HttpSession session) {
-        Client client = new Client();
-        session.setAttribute("client", client);
+        Client client = (Client) session.getAttribute("loggedClient");
+//        session.setAttribute("client", client);
+        System.out.println("--->" + client);
         if (client.getUsername() == null) {
             return "loginClient";
         } else {

@@ -34,4 +34,42 @@ public class EmployeeService {
         System.out.println("So luong: " + branchEmployees.size());
         return branchEmployees;
     }
+    
+    public boolean checkIfUsernameExist(Employee employee) {
+        List<Employee> employees = employeeRepository.getAll();
+        for (Employee emp : employees) {
+            if(emp.getUsername().trim().equals(employee.getUsername().trim()))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean checkIfPhoneExist(Employee employee) {
+        List<Employee> employees = employeeRepository.getAll();
+        for (Employee emp : employees) {
+            if(emp.getPhone().trim().equals(employee.getUsername().trim()))
+                return true;
+        }
+        return false;
+    }
+    
+    public String createNewEmployeeID(String branchId) {
+        List<Employee> employees = getEmployeeByBranch(branchId);
+        Integer numId = 1;
+        for (Employee emp : employees) {
+            if (numId == Integer.valueOf(emp.getId().substring(4).trim()) && emp.getBranch().getId().trim().equals(branchId)) {
+                numId++;
+            } else {
+                break;
+            }
+        }
+        
+
+        return branchId + "EM" + String.format("%03d", numId);
+    }
+    
+    @Transactional
+    public void saveEmployee(Employee employee) {
+        employeeRepository.saveOrUpdate(employee);
+    }
 }

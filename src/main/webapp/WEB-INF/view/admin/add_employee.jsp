@@ -65,31 +65,21 @@
                         <div class="form-group row mb-0">
                             <div class="row">
                                 <div class="col-12">
-                                    <c:if test="${nameError != null}">
+                                    <c:if test="${usernameError != null}">
                                         <p style="color: red">
-                                            <c:out value="${'Tên sản phẩm bị trùng'}" />
+                                            <c:out value="${'Tên đăng nhập bị trùng'}" />
                                         </p>
                                     </c:if>
-                                    <c:if test="${blankError != null}">
+                                    <c:if test="${phoneError != null}">
                                         <p style="color: red">
-                                            <c:out value="${'Điền thiếu thông tin'}" />
+                                            <c:out value="${'Số điện thoại bị trùng'}" />
                                         </p>
                                     </c:if>
-                                    <c:if test="${imageError != null}">
-                                        <p style="color: red">
-                                            <c:out value="${'Thiếu ảnh sản phẩm'}" />
-                                        </p>
-                                    </c:if>
-                                    <c:if test="${idCreateError != null}">
-                                        <p style="color: red">
-                                            <c:out value="${'Vượt quá số lượng sản phẩm'}" />
-                                        </p>
-                                    </c:if>
+                                    
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label">Tên nhân viên:</label>
                                         <div class="col-sm-9 my-2">
                                             <form:input path="name" id="name" maxlength="45" />
-
                                         </div>
                                     </div>
 
@@ -97,7 +87,6 @@
                                         <label class="col-sm-3 col-form-label">Ngày sinh:</label>
                                         <div class="input-group col-sm-9 my-2">
                                             <form:input id="datepicker" path="dob" name="birthday" placeholder="Ngày sinh" required="required"/>
-                                            <span class="input-group-text">VNĐ</span>
                                         </div>
                                     </div>
 

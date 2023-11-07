@@ -25,4 +25,12 @@ public class BranchService {
         return branchRepository.getAll();
     }
     
+    public Branch getBranchById(String branchId) {
+        List<Branch> branchs = getAllBranches();
+        for (Branch branch : branchs) {
+            if(branch.getId().trim().equals(branchId))
+                return branch;
+        }
+        return null;
+    }
 }
