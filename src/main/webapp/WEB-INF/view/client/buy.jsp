@@ -43,39 +43,39 @@
             <section class="furniture_section layout_padding">
                 <div class="container-fluid">
                     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
-                        <form:form action="/thanhToan" commandName="bill" method="POST" enctype="multipart/form-data">
+                        <form:form action="/thanhToan/${soldProduct.id}" commandName="soldProduct" method="POST" enctype="multipart/form-data">
                             <div class="form-group row mb-0">
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="row">
                                             <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
                                             <div class="col-sm-9 my-2">
-                                                ${product.name}
+                                                ${soldProduct.product.name}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-3 col-form-label">Giá thành:</label>
                                             <div class="input-group col-sm-9 my-2">
-                                                <input type="number" name="price" id="price"  value="${product.price}" readonly />
+                                                <input type="number" name="price" id="price"  value="${soldProduct.product.price}" readonly />
                                                 <span class="input-group-text">VNĐ</span>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-3 col-form-label">Số lượng:</label>
                                             <div class="input-group col-sm-9 my-2">
-                                                <input type="number" path="quantity" id="quantity" value="quantity" min="1"  />
+                                                 <form:input  type="number" path="quantity" id="quantity" width="100%" maxlength="45" required="required" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-3 col-form-label">Mô tả sản phẩm:</label>
                                             <div class="input-group col-sm-9 my-2">
-                                                ${product.description}
+                                                ${soldProduct.product.description}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-3 col-form-label">Tổng giá:</label>
                                             <div class="input-group col-sm-9 my-2">
-                                                <span id="total-price" path="total-price">${product.price} VNĐ</span>
+                                                <span id="total-price" path="total-price">${soldproduct.product.getImagePath()} VNĐ</span>
                                             </div>
                                         </div>
                                     </div>

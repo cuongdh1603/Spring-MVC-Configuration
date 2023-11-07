@@ -25,5 +25,8 @@ public class SoldProductSerVice {
         return repo.getAllPr();
     }
     
+    public SoldProduct getProductById(String id) {
+        return repo.getById(id);
+    }
     
 }

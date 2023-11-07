@@ -38,10 +38,10 @@ public class ClientController {
 
     @Autowired
     private BillService bilServce;
-    
-    @Autowired 
+
+    @Autowired
     private SoldProductSerVice service;
-    
+
     @RequestMapping(value = {"/client"}, method = RequestMethod.GET)
     public String getIndex(ModelMap model) {
         List<Client> clients = serVice.getAllClient();
@@ -62,32 +62,48 @@ public class ClientController {
 
     @RequestMapping(value = {"/buy/{id}"}, method = RequestMethod.GET)
     public String findByProduct(@PathVariable("id") String id, ModelMap model) {
-        Product product = productService.getProductById(id);
-        ProductMapper productMapper = new ProductMapper();
-        productMapper.setId(product.getId());
-        productMapper.setName(product.getName());
-        productMapper.setPrice(product.getPrice());
-        productMapper.setDescription(product.getDescription());
-        productMapper.setFilePath(product.getImagePath());
-        model.addAttribute("product", productMapper);
+        SoldProduct soldProduct = service.getProductById(id);
+        model.addAttribute("soldProduct", soldProduct);
         return "client/buy";
     }
 
-    @RequestMapping(value = {"/thanhToan"}, method = RequestMethod.POST)
-    public String saveProduct(Model model, @ModelAttribute("bill") Bill bill, HttpSession session) {
+    @RequestMapping(value = {"/thanhToan/{id}"}, method = RequestMethod.POST)
+    public String saveProduct(Model model, @ModelAttribute("bill") Bill bill, HttpSession session, @PathVariable("id") String id) {
         Client client = (Client) session.getAttribute("loggedClient");
-//        session.setAttribute("client", client);
-        System.out.println("--->" + client);
+        SoldProduct pr = service.getProductById(id);
+        String idpr = pr.getId();
+        String slicedString = idpr.substring(0, 2);
+        System.out.println("ol"+slicedString);
+
         if (client.getUsername() == null) {
             return "loginClient";
         } else {
+            bill.setId(slicedString+createNewBillID());
             bill.setClient(client);
+            bill.setSoldProduct(pr);
             bill.setCreateDate(new Date());
             bill.setStatus(1);
             bilServce.Thanhtoan(bill);
-            return "SUSSESS";
+            return "client/SUSSESS";
         }
 
+    }
+    
+    public String createNewBillID() {
+        List<Bill> bills = bilServce.getAll();
+        Integer numId = 1;
+        for (Bill bill : bills) {
+            if (numId == Integer.parseInt(bill.getId().substring(4))){
+                numId++;
+            } else {
+                break;
+            }
+        }
+        if (numId > 999) {
+            return null;
+        }
+
+        return "BL" + String.format("%03d", numId);
     }
 
 }
