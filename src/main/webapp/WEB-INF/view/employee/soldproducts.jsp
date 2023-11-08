@@ -51,10 +51,10 @@
                 </div>
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Danh sách sản phẩm</h1>
+                        <h1 class="h2">Kho sản phẩm</h1>
                     </div>
                     <a class="btn btn-primary mb-2" href="/admin/add">
-                        Thêm mặt hàng
+                        Nhập sản phẩm mới
                     </a>
                     <!--DEMO BANG DATA TABLE-->
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -64,26 +64,30 @@
                                 <th>Tên sản phẩm</th>
                                 <th>Hình ảnh</th>
                                 <th>Giá thành</th>
+                                <th>Số lượng</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="pr" items="${products}" varStatus="counter">
+                            <c:forEach var="pr" items="${soldproducts}" varStatus="counter">
                                 <tr>
                                     <td>
                                         <c:out value="${counter.count}"/>
                                     </td>
                                     <td>
-                                        <c:out value="${pr.name}"/>
+                                        <c:out value="${pr.product.name}"/>
                                     </td>
                                     <td>
-                                        <img src="<c:url value="${pr.getImagePath()}"/>" width="100px" height="50px">
+                                        <img src="<c:url value="${pr.product.getImagePath()}"/>" width="100px" height="50px">
                                     </td>
 
                                     <td>
                                         <p>
-                                            <fmt:formatNumber type = "number"  groupingUsed="true" value = "${pr.price}" /> VNĐ
+                                            <fmt:formatNumber type = "number"  groupingUsed="true" value = "${pr.product.price}" /> VNĐ
                                         </p>
+                                    </td>
+                                    <td>
+                                        <c:out value="${pr.quantity}"/>
                                     </td>
                                     <td>
                                         <a type="button" class="btn btn-primary btn-sm" href="">

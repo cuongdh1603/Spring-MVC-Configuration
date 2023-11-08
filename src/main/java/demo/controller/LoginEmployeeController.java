@@ -6,6 +6,7 @@ package demo.controller;
 
 import demo.model.Employee;
 import demo.service.EmployeeService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,22 +19,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author OS
  */
 @Controller
-@RequestMapping("/employ")
 public class LoginEmployeeController {
     
     @Autowired
     private EmployeeService employeeService;
     
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/employ/login"}, method = RequestMethod.GET)
     public String getLoginForm(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
         return "employee/login";
     }
     
-    @RequestMapping(value = {"/post-login"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/employ/post-login"}, method = RequestMethod.POST)
     public String doLogin(Model model,
-            @ModelAttribute("employee") Employee employee)
+            @ModelAttribute("employee") Employee employee,
+            HttpSession session)
     {
         if(employee.getUsername().trim().equals("admin") && employee.getPassword().trim().equals("admin")){
             return "redirect:/admin";
@@ -43,8 +44,8 @@ public class LoginEmployeeController {
             System.out.println("FAIL");
         }
         else{
-            System.out.println("SUCCESS");
+            session.setAttribute("loggedEmployee", loggedEmployee);
         }
-        return "employee/login";
+        return "redirect:/employ";
     }
 }
