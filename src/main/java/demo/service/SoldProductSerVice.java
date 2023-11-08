@@ -39,4 +39,8 @@ public class SoldProductSerVice {
         }
         return branchSoldProducts;
     }
+    
+    public void saveOrUpdate(SoldProduct soldProduct){
+        repo.saveOrUpdate(soldProduct);
+    }
 }

@@ -32,9 +32,13 @@ public class SoldProductRepository {
         Criteria criteria = (Criteria) getSessionFactory().getCurrentSession().createCriteria(SoldProduct.class);
         return criteria.list();
     }
-      public SoldProduct getById(String id) {
+
+    public SoldProduct getById(String id) {
         return getSessionFactory().getCurrentSession().get(SoldProduct.class, id);
     }
-    
-    
+
+    public void saveOrUpdate(SoldProduct soldProduct) {
+        getSessionFactory().getCurrentSession().saveOrUpdate(soldProduct);
+    }
+
 }

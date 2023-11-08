@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -55,60 +54,57 @@
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Cập nhật sản phẩm chi nhánh</h1>
                     </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-8">                               
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Mã sản phẩm:</label>
+                                <div class="col-sm-9 my-2">
+                                    <c:out value="${product.id}" />
+                                </div>
+                            </div>
 
-                    <form:form action="#" commandName="product" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
+                                <div class="col-sm-9 my-2">
+                                    <c:out value="${product.name}" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Giá thành:</label>
+                                <div class="input-group col-sm-9 my-2">
+                                    <c:out value="${product.price}" /> VNĐ                                       
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Mô tả sản phẩm:</label>
+                                <div class="input-group col-sm-9 my-2">
+                                    <c:out value="${product.description}" />
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="preview text-center mb-2">
+                                <img class="img-thumbnail" src="<c:url value="${product.getFilePath()}"/>" id="file-ip-1-preview" width="200px" height="200px">
+                            </div>
+
+                        </div>
+                    </div>
+                    <form:form action="/employ/updateSoldProduct/${product.id}" modelAttribute="soldproduct" method="POST" enctype="multipart/form-data">
                         <div class="form-group row mb-0">
                             <div class="row">
-                                <div class="col-8">                               
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label">Mã sản phẩm:</label>
-                                        <div class="col-sm-9 my-2">
-                                            <form:hidden path="id" />
-                                            <c:out value="${product.id}" />
-                                        </div>
+                                <div class="row">
+                                    <label class="col-sm-3 col-form-label">Số lượng:</label>
+                                    <div class="input-group col-sm-9 my-2">
+                                        <form:input type="number" path="quantity" id="quantity" min="1" max="100" required="required" />
                                     </div>
-                                            
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
-                                        <div class="col-sm-9 my-2">
-                                            <c:out value="${product.name}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label">Giá thành:</label>
-                                        <div class="input-group col-sm-9 my-2">
-                                           <c:out value="${product.price}" /> VNĐ                                       
-                                        </div>
-                                    </div>
-                                        <div class="row">
-                                        <label class="col-sm-3 col-form-label">Số lượng:</label>
-                                        <div class="input-group col-sm-9 my-2">
-                                            <input type="number" path="quantity" id="quantity" min="1" max="100000000" required="required"  />
-                                           
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-3 col-form-label">Mô tả sản phẩm:</label>
-                                        <div class="input-group col-sm-9 my-2">
-                                               <c:out value="${product.description}" />
-
-                                        </div>
-                                    </div>
-
                                 </div>
-                                <div class="col-4">
-                                    <div class="preview text-center mb-2">
-                                        <img class="img-thumbnail" src="<c:url value="${product.getFilePath()}"/>" id="file-ip-1-preview" width="200px" height="200px">
-                                    </div>
-                                  
-                                </div>
-
                                 <div class="row">
                                     <div class="col-3"></div>
                                     <div class="col-6">
                                         <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật chi nhánh">
-                                      
                                         <a class="btn btn-danger btn-col-3" href="/admin/products">Hủy</a>
                                     </div>
                                 </div>

@@ -16,19 +16,21 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author OS
  */
-@Repository 
+@Repository
 @Transactional
 public class BranchRepository {
+
     @Autowired
     private SessionFactory sessionFactory;
-    
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<Branch> getAll() {
         Criteria criteria = (Criteria) getSessionFactory().getCurrentSession().createCriteria(Branch.class);
         return criteria.list();
     }
+
 }

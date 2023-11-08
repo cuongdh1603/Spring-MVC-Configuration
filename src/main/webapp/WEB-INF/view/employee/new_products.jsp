@@ -85,7 +85,7 @@
                                     </td>
                                     
                                     <td>
-                                        <a type="button" class="btn btn-primary btn-sm" href="">
+                                        <a type="button" class="btn btn-primary btn-sm" href="/employ/soldproduct/${pr.id}">
                                             
                                             Thêm sản phẩm
                                         </a>
