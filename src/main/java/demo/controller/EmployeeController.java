@@ -91,7 +91,7 @@ public class EmployeeController {
         soldproduct.setId(employee.getId().substring(0, 2)+createNewSoldProductID());
         soldProductService.saveOrUpdate(soldproduct);
         model.addAttribute("soldproduct", soldproduct);
-        return "redirect:/soldproduct/add";
+        return "redirect:/employ/soldproduct";
     }
     
       public String createNewSoldProductID() {
