@@ -90,10 +90,8 @@
                                         <c:out value="${pr.quantity}"/>
                                     </td>
                                     <td>
-                                        <a type="button" class="btn btn-primary btn-sm" href="">
-                                            <i class="fas fa-info-circle mx-2"></i>
-                                        </a>
-                                        <a type="button" class="btn btn-success btn-sm" href="">
+                                    
+                                        <a type="button" class="btn btn-success btn-sm" href="/employ/soldproductup/${pr.id}">
                                             <i class="fas fa-edit mx-2"></i>
                                         </a>
                                     </td>

@@ -66,10 +66,23 @@ public class EmployeeController {
         return "employee/new_products";
     }
 
+    @RequestMapping(value = {"/soldproductup/{id}"}, method = RequestMethod.GET)
+    public String findSoldProductId(Model model, @PathVariable("id") String id) {
+        SoldProduct soldProduct = soldProductService.getProductById(id);
+        model.addAttribute("soldproduct", soldProduct);
+        return "employee/updatesoldproduct";
+    }
+
+    @RequestMapping(value = {"/soldproductupdateqt"}, method = RequestMethod.POST)
+    public String capnhatsoLuongKho(Model model , @ModelAttribute("soldproduct") SoldProduct soldproduct) {
+        soldProductService.saveOrUpdate(soldproduct);
+        return "redirect:employee/new_products";
+    }
+
     @RequestMapping(value = {"/soldproduct/{id}"}, method = RequestMethod.GET)
     public String soldProduct(Model model, @PathVariable("id") String id) {
         Product product = productService.getProductById(id);
-        SoldProduct soldProduct = new  SoldProduct();
+        SoldProduct soldProduct = new SoldProduct();
         ProductMapper productMapper = new ProductMapper();
         productMapper.setId(product.getId());
         productMapper.setName(product.getName());
@@ -77,28 +90,28 @@ public class EmployeeController {
         productMapper.setDescription(product.getDescription());
         productMapper.setFilePath(product.getImagePath());
         model.addAttribute("product", productMapper);
-                model.addAttribute("soldproduct", soldProduct);
-        return "employee/addsoldproduct";
+        model.addAttribute("soldproduct", soldProduct);
+        return "redirect:/employ/soldproduct";
     }
 
     @RequestMapping(value = {"/updateSoldProduct/{id}"}, method = RequestMethod.POST)
-    public String updateSoldPr(Model model,  @ModelAttribute("soldproduct") SoldProduct soldproduct, HttpSession session, @PathVariable("id") String id) {
+    public String updateSoldPr(Model model, @ModelAttribute("soldproduct") SoldProduct soldproduct, HttpSession session, @PathVariable("id") String id) {
         Employee employee = (Employee) session.getAttribute("loggedEmployee");
         Product product = productService.getProductById(id);
         Branch branch = branchService.getBranchById(employee.getId().substring(0, 2));
         soldproduct.setProduct(product);
         soldproduct.setBranch(branch);
-        soldproduct.setId(employee.getId().substring(0, 2)+createNewSoldProductID());
+        soldproduct.setId(employee.getId().substring(0, 2) + createNewSoldProductID());
         soldProductService.saveOrUpdate(soldproduct);
         model.addAttribute("soldproduct", soldproduct);
         return "redirect:/employ/soldproduct";
     }
-    
-      public String createNewSoldProductID() {
+
+    public String createNewSoldProductID() {
         List<SoldProduct> soldProducts = soldProductService.getAllSoldProduct();
         Integer numId = 1;
         for (SoldProduct bill : soldProducts) {
-            if (numId == Integer.parseInt(bill.getId().trim().substring(4))){
+            if (numId == Integer.parseInt(bill.getId().trim().substring(4))) {
                 numId++;
             } else {
                 break;
