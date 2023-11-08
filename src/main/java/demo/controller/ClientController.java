@@ -53,11 +53,17 @@ public class ClientController {
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
     public String getUser(ModelMap model, HttpSession session) {
         Client loggedClient = (Client) session.getAttribute("loggedClient");
-        model.addAttribute("username", loggedClient.getUsername());
+        if (loggedClient == null) {
+            List<SoldProduct> soldproducts = service.getAllSoldProduct();
+            model.addAttribute("soldproducts", soldproducts);
+            return "client/index";
+        } else {
+            model.addAttribute("username", loggedClient.getUsername());
+            List<SoldProduct> soldproducts = service.getAllSoldProduct();
+            model.addAttribute("soldproducts", soldproducts);
+            return "client/index";
+        }
 
-        List<SoldProduct> soldproducts = service.getAllSoldProduct();
-        model.addAttribute("soldproducts", soldproducts);
-        return "client/index";
     }
 
     @RequestMapping(value = {"/buy/{id}"}, method = RequestMethod.GET)
@@ -73,12 +79,12 @@ public class ClientController {
         SoldProduct pr = service.getProductById(id);
         String idpr = pr.getId();
         String slicedString = idpr.substring(0, 2);
-        System.out.println("ol"+slicedString);
+        System.out.println("ol" + slicedString);
 
         if (client.getUsername() == null) {
             return "loginClient";
         } else {
-            bill.setId(slicedString+createNewBillID());
+            bill.setId(slicedString + createNewBillID());
             bill.setClient(client);
             bill.setSoldProduct(pr);
             bill.setCreateDate(new Date());
@@ -89,12 +95,12 @@ public class ClientController {
         }
 
     }
-    
+
     public String createNewBillID() {
         List<Bill> bills = bilServce.getAll();
         Integer numId = 1;
         for (Bill bill : bills) {
-            if (numId == Integer.parseInt(bill.getId().trim().substring(4))){
+            if (numId == Integer.parseInt(bill.getId().trim().substring(4))) {
                 numId++;
             } else {
                 break;
