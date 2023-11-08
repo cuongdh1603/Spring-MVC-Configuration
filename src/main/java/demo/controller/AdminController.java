@@ -110,19 +110,7 @@ public class AdminController {
         return "admin/update_product";
     }
 
-    @RequestMapping(value = {"/soldproduct/{id}"}, method = RequestMethod.GET)
-    public String soldProduct(Model model, @PathVariable("productId") String productId) {
-        Product product = productService.getProductById(productId);
-        ProductMapper productMapper = new ProductMapper();
-        productMapper.setId(product.getId());
-        productMapper.setName(product.getName());
-        productMapper.setPrice(product.getPrice());
-        productMapper.setDescription(product.getDescription());
-        productMapper.setFilePath(product.getImagePath());
-
-        model.addAttribute("product", productMapper);
-        return "admin/soldproduct";
-    }
+    
     
     
    

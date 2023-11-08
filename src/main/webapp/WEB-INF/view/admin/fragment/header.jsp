@@ -30,7 +30,7 @@
                 <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- <li><a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a></li> -->
-                <li><a class="dropdown-item" href="/login">Đăng xuất</a></li>
+                <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
             </ul>
         </div>
     </header>

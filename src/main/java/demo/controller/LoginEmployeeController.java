@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -34,14 +35,20 @@ public class LoginEmployeeController {
     @RequestMapping(value = {"/employ/post-login"}, method = RequestMethod.POST)
     public String doLogin(Model model,
             @ModelAttribute("employee") Employee employee,
+            RedirectAttributes redirectAttributes,
             HttpSession session)
     {
         if(employee.getUsername().trim().equals("admin") && employee.getPassword().trim().equals("admin")){
+            Employee admin = new Employee();
+            employee.setUsername("admin");
+            employee.setPassword("admin");
+            session.setAttribute("loggedEmployee", admin);
             return "redirect:/admin";
         }
         Employee loggedEmployee = employeeService.checkIfEmployeeExist(employee);
         if(loggedEmployee == null){
-            System.out.println("FAIL");
+            redirectAttributes.addAttribute("failedLogin", "___");
+            return "redirect:/employ/login";
         }
         else{
             session.setAttribute("loggedEmployee", loggedEmployee);

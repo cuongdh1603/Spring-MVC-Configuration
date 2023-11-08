@@ -86,12 +86,12 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <a type="button" class="btn btn-primary btn-sm" href="">
-                                            <i class="fas fa-info-circle mx-2"></i>
-                                        </a>
-                                        <a type="button" class="btn btn-success btn-sm" href="soldproduct/${pr.id}">
+                                        <a type="button" class="btn btn-primary btn-sm" href="/admin/update/product/${pr.id}">
                                             <i class="fas fa-edit mx-2"></i>
                                         </a>
+<!--                                        <a type="button" class="btn btn-success btn-sm" href="">
+                                            <i class="fas fa-edit mx-2"></i>
+                                        </a>-->
                                     </td>
                                 </tr>
                             </c:forEach>

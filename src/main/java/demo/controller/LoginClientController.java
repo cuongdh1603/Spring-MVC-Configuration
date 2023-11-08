@@ -1,6 +1,7 @@
 package demo.controller;
 
 import demo.model.Client;
+import demo.model.Employee;
 import demo.serviceImpl.ClientServiceImpl;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,20 @@ public class LoginClientController {
         return "loginClient";
     }
 
-   @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
-  public String logout(HttpSession session) {
-    session.invalidate(); // Xóa toàn b? phiên làm vi?c c?a ng??i dùng
-    return "redirect:/login"; // Chuy?n h??ng ??n trang ??ng nh?p sau khi ??ng xu?t
-}
-    
-    
+    @RequestMapping(value = {"/logout"}, method = RequestMethod.GET)
+    public String logout(Model model,
+            HttpSession session) {
+        Employee employee = (Employee) session.getAttribute("loggedEmployee");
+        if (employee != null) {
+            System.out.println("YES");
+            session.removeAttribute("loggedEmployee");
+
+            return "redirect:/employ/login";
+        }
+        session.invalidate(); // Xóa toàn b? phiên làm vi?c c?a ng??i dùng
+        return "redirect:/login"; // Chuy?n h??ng ??n trang ??ng nh?p sau khi ??ng xu?t
+    }
+
     @RequestMapping(value = "/post-login", method = RequestMethod.POST)
     public String doLogin(@ModelAttribute("client") Client client,
             Model model,

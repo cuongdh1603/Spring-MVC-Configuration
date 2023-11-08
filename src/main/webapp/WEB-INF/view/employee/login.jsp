@@ -22,11 +22,14 @@
         <div class="container col-lg-6">
             <h1>Đăng Nhập </h1>
             <form:form action="/employ/post-login"  commandName="employee" method="post" onsubmit="return isValidForm();">
-                <c:if test="${loginFail != null}">
-                    <p style="color: red">
-                        <c:out value="${'Đăng nhập thất bại'}" />
-                    </p>
-                </c:if>
+
+                <div class="alert alert-danger">
+                    <c:if test="${failedLogin != null}">
+                        <p style="color: red">
+                            <c:out value="${'Đăng nhập thất bại'}" />
+                        </p>
+                    </c:if>
+                </div>
                 <label for="username">Tên người dùng:</label>
                 <form:input type="text" id="username" path="username" required="required"/>
 
@@ -34,9 +37,9 @@
                 <form:input type="password" id="password" path="password" required="required"/>
 
                 <input type="submit" class="btn btn-primary btn-col-3" value="Đăng nhập">
-                
+
                 <br>
-                
+
             </form:form>
         </div>
         <script>
@@ -49,7 +52,7 @@
                     errorUsername.removeAttribute('hidden')
                     return false
                 }
-                
+
                 if (password == '') {
                     console.log(password.length)
                     errorPassword.removeAttribute('hidden')

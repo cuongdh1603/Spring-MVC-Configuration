@@ -5,6 +5,7 @@
 package demo.service;
 
 import demo.model.Product;
+import demo.model.SoldProduct;
 import demo.repository.ProductRepository;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +117,24 @@ public class ProductService {
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         }
         productRepository.saveOrUpdate(product);
+    }
+    
+    public List<Product> getNewProductList(List<SoldProduct> soldProducts) {
+        List<Product> products = productRepository.getAll();
+        List<String> sellingProductId = new ArrayList<String>();
+        for (SoldProduct soldProduct : soldProducts) {
+            sellingProductId.add(soldProduct.getProduct().getId());
+        }
+        
+        Iterator<Product> itr = products.iterator();
+        
+        while(itr.hasNext()){
+            Product product = itr.next();
+            if(sellingProductId.contains(product.getId()))
+                itr.remove();
+        }
+ 
+        return products;
     }
 
     //delete all file in a directory
