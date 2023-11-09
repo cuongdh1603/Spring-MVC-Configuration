@@ -91,7 +91,7 @@ public class EmployeeController {
         productMapper.setFilePath(product.getImagePath());
         model.addAttribute("product", productMapper);
         model.addAttribute("soldproduct", soldProduct);
-        return "redirect:/employ/soldproduct";
+        return "employee/addsoldproduct";
     }
 
     @RequestMapping(value = {"/updateSoldProduct/{id}"}, method = RequestMethod.POST)
@@ -104,7 +104,9 @@ public class EmployeeController {
         soldproduct.setId(employee.getId().substring(0, 2) + createNewSoldProductID());
         soldProductService.saveOrUpdate(soldproduct);
         model.addAttribute("soldproduct", soldproduct);
-        return "redirect:/employ/soldproduct";
+        model.addAttribute("employee", employee);
+        model.addAttribute("soldproducts", soldProductService.getSoldProductsByBranch(employee.getId().substring(0, 2)));
+        return "employee/soldproducts";
     }
 
     public String createNewSoldProductID() {

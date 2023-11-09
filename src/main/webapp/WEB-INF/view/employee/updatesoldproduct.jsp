@@ -100,7 +100,7 @@
                         <div class="row">
                             <div class="col-3"></div>
                             <div class="col-6">
-                                <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật số lượng">
+                                <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật số lượng" >
                                 <a class="btn btn-danger btn-col-3" th:href="@{/items}">Hủy</a>
                             </div>
                         </div>

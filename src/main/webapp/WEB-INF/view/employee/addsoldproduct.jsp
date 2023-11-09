@@ -104,7 +104,7 @@
                                 <div class="row">
                                     <div class="col-3"></div>
                                     <div class="col-6">
-                                        <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật chi nhánh">
+                                        <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật chi nhánh" onclick="myFunction()">
                                         <a class="btn btn-danger btn-col-3" href="/admin/products">Hủy</a>
                                     </div>
                                 </div>
@@ -125,6 +125,10 @@
                     preview.src = src;
                     preview.style.display = "block";
                 }
+            }
+
+            function myFunction() {
+                alert("Thêm thành công !");
             }
         </script>
     </body>
