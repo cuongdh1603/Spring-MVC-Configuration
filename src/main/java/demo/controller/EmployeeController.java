@@ -69,14 +69,32 @@ public class EmployeeController {
     @RequestMapping(value = {"/soldproductup/{id}"}, method = RequestMethod.GET)
     public String findSoldProductId(Model model, @PathVariable("id") String id) {
         SoldProduct soldProduct = soldProductService.getProductById(id);
+        model.addAttribute("productId", soldProduct.getProduct().getId().trim());
         model.addAttribute("soldproduct", soldProduct);
         return "employee/updatesoldproduct";
     }
 
-    @RequestMapping(value = {"/soldproductupdateqt"}, method = RequestMethod.POST)
-    public String capnhatsoLuongKho(Model model , @ModelAttribute("soldproduct") SoldProduct soldproduct) {
-        soldProductService.saveOrUpdate(soldproduct);
-        return "redirect:employee/new_products";
+    @RequestMapping(value = {"/{productId}/updateqt"}, method = RequestMethod.POST)
+    public String capnhatsoLuongKho(Model model , 
+            @ModelAttribute("soldproduct") SoldProduct soldproduct,
+            @PathVariable("productId") String productId,
+            HttpSession session) 
+    {
+        Employee employee = (Employee) session.getAttribute("loggedEmployee");
+        model.addAttribute("employee", employee);
+        
+        
+        Product product = productService.getProductById(productId);
+        Branch branch = employee.getBranch();
+        if(product != null && branch != null){
+//            System.out.println("Product: " + product);
+//            System.out.println("Branch : " + branch);
+            soldproduct.setBranch(branch);
+            soldproduct.setProduct(product);
+            soldProductService.saveOrUpdate(soldproduct);
+        }
+//        soldProductService.saveOrUpdate(soldproduct);
+        return "redirect:/employ/soldproduct";
     }
 
     @RequestMapping(value = {"/soldproduct/{id}"}, method = RequestMethod.GET)

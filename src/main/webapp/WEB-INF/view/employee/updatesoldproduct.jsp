@@ -54,7 +54,7 @@
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Cập nhật số lượng sản phẩm chi nhánh</h1>
             </div>
-            <form:form action="/employ/soldproductupdateqt" commandName="soldproduct" method="POST" enctype="multipart/form-data">
+            <form:form action="/employ/${productId}/updateqt" commandName="soldproduct" method="POST" enctype="multipart/form-data">
                 <div class="form-group row mb-0">
                     <div class="row">
                         <div class="col-8">
