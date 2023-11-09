@@ -58,13 +58,13 @@
                 <div class="form-group row mb-0">
                     <div class="row">
                         <div class="col-8">
-                             <div class="row">
-                                        <label class="col-sm-3 col-form-label">Mã sản phẩm:</label>
-                                        <div class="col-sm-9 my-2">
-                                            <form:hidden path="id" />
-                                            <c:out value="${soldproduct.id}" />
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Mã sản phẩm:</label>
+                                <div class="col-sm-9 my-2">
+                                    <form:hidden path="id" />
+                                    <c:out value="${soldproduct.id}" />
+                                </div>
+                            </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
                                 <div class="col-sm-9 my-2">
@@ -80,7 +80,7 @@
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Số lượng:</label>
                                 <div class="input-group col-sm-9 my-2">
-                                    <form:input  type="number" path="quantity" id="quantity" width="100%" maxlength="45" required="required" />
+                                    <form:input  type="number" path="quantity" id="quantity" width="100%" min="1" maxlength="45" required="required" />
                                 </div>
                             </div>
                             <div class="row">
@@ -100,7 +100,7 @@
                         <div class="row">
                             <div class="col-3"></div>
                             <div class="col-6">
-                                <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật số lượng" >
+                                <input type="submit" class="btn btn-primary btn-col-3" value="Cập nhật số lượng" onclick="myFunction()" >
                                 <a class="btn btn-danger btn-col-3" th:href="@{/items}">Hủy</a>
                             </div>
                         </div>
@@ -108,5 +108,10 @@
                 </div>
             </form:form>
         </main>
+        <script>
+            function myFunction() {
+                alert("Cập nhật số lượng thành công !");
+            }
+        </script>
     </body>
 </html>
